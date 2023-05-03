@@ -136868,7 +136868,31 @@ exports['zh_TW'] = require('./locales/zh_TW');
 var Faker = require('./lib');
 var faker = new Faker({ locales: require('./lib/locales') });
 module['exports'] = faker;
-},{"./lib":"node_modules/faker/lib/index.js","./lib/locales":"node_modules/faker/lib/locales.js"}],"src/Company.ts":[function(require,module,exports) {
+},{"./lib":"node_modules/faker/lib/index.js","./lib/locales":"node_modules/faker/lib/locales.js"}],"src/User.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.User = void 0;
+var faker_1 = __importDefault(require("faker"));
+var User = /** @class */function () {
+  function User() {
+    this.name = faker_1.default.name.firstName();
+    this.location = {
+      lat: parseFloat(faker_1.default.address.latitude()),
+      lng: parseFloat(faker_1.default.address.longitude())
+    };
+  }
+  return User;
+}();
+exports.User = User;
+},{"faker":"node_modules/faker/index.js"}],"src/Company.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -136896,13 +136920,18 @@ exports.Company = Company;
 },{"faker":"node_modules/faker/index.js"}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
+/// <reference types="@types/googlemaps" />
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var User_1 = require("./User");
 var Company_1 = require("./Company");
 var company = new Company_1.Company();
+var user = new User_1.User();
 console.log(company);
-},{"./Company":"src/Company.ts"}],"C:/Users/User/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+console.log(user);
+google;
+},{"./User":"src/User.ts","./Company":"src/Company.ts"}],"C:/Users/User/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -136927,7 +136956,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50746" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50087" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
