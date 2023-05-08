@@ -117,50 +117,40 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/CustomMap.ts":[function(require,module,exports) {
+})({"src/script.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CustomMap = void 0;
-var CustomMap = /** @class */function () {
-  function CustomMap(divId) {
-    var mapElement = document.getElementById(divId);
-    var element = mapElement;
-    this.googleMap = new google.maps.Map(element, {
-      zoom: 1,
-      center: {
-        lat: 0,
-        lng: 0
-      }
-    });
+var apiKey = "AIzaSyCnDcAI6ivVuCz9vLeNKmnp7FXfPCZPWoU";
+var scriptUrl = "https://maps.googleapis.com/maps/api/js?key=".concat(apiKey);
+fetch(scriptUrl).then(function (response) {
+  if (!response.ok) {
+    throw new Error('Failed to load Google Maps API script');
   }
-  return CustomMap;
-}();
-exports.CustomMap = CustomMap;
-},{}],"src/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
+  return response.text();
+}).then(function (script) {
+  var scriptElement = document.createElement('script');
+  console.log(scriptElement);
+  scriptElement.textContent = script;
+  document.head.append(scriptElement);
+  console.log('Google Maps API script loaded');
+}).catch(function (error) {
+  console.error(error);
 });
-/// <reference types="@types/googlemaps" />
-var CustomMap_1 = require("./CustomMap");
-new CustomMap_1.CustomMap('map');
-/* if (typeof google === 'undefined') {
-  console.error('Google Maps API not loaded');
-} else {
-  console.log('Google Maps API was loaded');
-  const mapElement = document.getElementById('map');
-  const element: Element = mapElement as Element;
+/* const googleMapsScript = document.querySelector(
+  'script[src="https://maps.googleapis.com/maps/api/js?key="]'
+);
 
-  const map = new google.maps.Map(element, {
-    zoom: 1,
-    center: { lat: 0, lng: 0 },
-  });
-} */
-},{"./CustomMap":"src/CustomMap.ts"}],"C:/Users/User/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+console.log(googleMapsScript);
+
+googleMapsScript.addEventListener('load', () => {
+  googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+});
+
+console.log(googleMapsScript); */
+},{}],"C:/Users/User/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -329,5 +319,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/User/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.ts"], null)
-//# sourceMappingURL=/src.f10117fe.js.map
+},{}]},{},["C:/Users/User/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/script.ts"], null)
+//# sourceMappingURL=/script.66fca108.js.map
