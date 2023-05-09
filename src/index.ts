@@ -1,12 +1,14 @@
 /// <reference types="@types/googlemaps" />
 import { CustomMap } from './CustomMap';
 import { User } from './User';
+import { Company } from './Company';
 
 const user = new User();
-console.log(user);
+const company = new Company();
 const customMap = new CustomMap('map');
 
-customMap.addUserMarker(user);
+customMap.addMarker(user);
+customMap.addMarker(company);
 
 /* if (typeof google === 'undefined') {
   console.error('Google Maps API not loaded');
