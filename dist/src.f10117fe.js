@@ -147,7 +147,7 @@ var CustomMap = /** @class */function () {
     });
     marker.addListener('click', function () {
       var infoWindow = new google.maps.InfoWindow({
-        content: 'Hi there!'
+        content: mappable.markerContent()
       });
       infoWindow.open(_this.googleMap, marker);
     });
@@ -136927,6 +136927,10 @@ var User = /** @class */function () {
       lng: parseFloat(faker_1.default.address.longitude())
     };
   }
+  User.prototype.markerContent = function () {
+    var content = "\n    <div>\n      <h3><span style='font-weight: 200'>User:</span> ".concat(this.name, "</h3>\n    </div>\n    ");
+    return content;
+  };
   return User;
 }();
 exports.User = User;
@@ -136952,6 +136956,10 @@ var Company = /** @class */function () {
       lng: parseFloat(faker_1.default.address.longitude())
     };
   }
+  Company.prototype.markerContent = function () {
+    var content = "\n    <div>\n      <h3>Company: ".concat(this.companyName, "</h3>\n      <p>").concat(this.catchPhrase, "</p>\n    </div>\n    ");
+    return content;
+  };
   return Company;
 }();
 exports.Company = Company;
